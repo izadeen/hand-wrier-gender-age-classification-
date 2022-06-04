@@ -1,7 +1,6 @@
 from Bilinear_CNN import bilinear_resnet
 import torch
 import torch.nn as nn
-from sklearn.metrics import accuracy_score
 
 
 class GenderClassification:

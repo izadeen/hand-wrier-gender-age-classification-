@@ -7,6 +7,8 @@ import torch
 from flask import request
 from flask import jsonify
 from flask import Flask
+from flask import json
+import flask
 from PIL import Image
 import torchvision
 from AgeClassifier import AgeClassifier
@@ -152,7 +154,10 @@ def predict():
     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     print(image.shape)
     prediction = predict_image(image, ageClassification, genderClassification)
-    return jsonify(prediction)
+    response = jsonify(prediction)
+    response.headers.set('Content-Type', 'custom')
+    response.headers.set("Access-Control-Allow-Origin","*")
+    return response
 
 
 if __name__ == '__main__':
